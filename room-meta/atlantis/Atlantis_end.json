@@ -1,0 +1,18 @@
+{
+  "width": 37,
+  "height": 47,
+  "length": 23,
+  "frontDoor": {
+    "x": 15,
+    "y": 7,
+    "z": 0
+  },
+  "backDoor": null,
+  "checkpoints": [
+    {
+      "x": 18,
+      "y": 8,
+      "z": 11
+    }
+  ]
+}
