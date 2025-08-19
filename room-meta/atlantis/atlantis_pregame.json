@@ -4,5 +4,11 @@
     "length": 57,
     "frontDoor": null,
     "backDoor": null,
-    "checkpoints": []
+    "checkpoints": [
+        {
+            "x": 12,
+            "y": 12,
+            "z": 28
+        }
+    ]
 }
