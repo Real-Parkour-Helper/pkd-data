@@ -1,0 +1,48 @@
+name: Release pkd-data ZIP
+
+on:
+  push:
+    branches: [ "main" ]
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Ensure required folders exist
+        run: |
+          test -d schematics || (echo "schematics/ not found" && exit 1)
+          test -d room-meta  || (echo "room-meta/ not found" && exit 1)
+
+      - name: Make version string
+        id: ver
+        run: |
+          # monotonically increasing per-repo
+          echo "TAG=v${GITHUB_RUN_NUMBER}" >> $GITHUB_OUTPUT
+          echo "${GITHUB_SHA}" > GIT_SHA.txt
+          echo "v${GITHUB_RUN_NUMBER}" > pkd-data.version
+
+      - name: Build ZIP
+        run: |
+          zip -r pkd-data.zip schematics room-meta pkd-data.version GIT_SHA.txt -x '**/.git/**'
+
+      - name: Compute SHA256
+        run: |
+          sha256sum pkd-data.zip | awk '{print $1}' > pkd-data.sha256
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.ver.outputs.TAG }}
+          name: "pkd-data ${{ steps.ver.outputs.TAG }}"
+          draft: false
+          prerelease: false
+          files: |
+            pkd-data.zip
+            pkd-data.sha256
+            pkd-data.version
