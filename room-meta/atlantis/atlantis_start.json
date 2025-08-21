@@ -8,6 +8,12 @@
     "y": 7,
     "z": 22
   },
-  "checkpoints": [],
+  "checkpoints": [
+    {
+      "x": 18,
+      "y": 8,
+      "z": 11
+    }
+  ],
   "deathPlane": 4
 }

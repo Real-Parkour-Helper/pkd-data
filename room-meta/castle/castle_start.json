@@ -8,5 +8,11 @@
     "y": 7,
     "z": 10
   },
-  "checkpoints": []
+  "checkpoints": [
+    {
+      "x": 18,
+      "y": 8,
+      "z": 3
+    }
+  ]
 }
