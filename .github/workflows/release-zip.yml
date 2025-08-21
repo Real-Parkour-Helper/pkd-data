@@ -29,7 +29,7 @@ jobs:
 
       - name: Build ZIP
         run: |
-          zip -r pkd-data.zip schematics room-meta pkd-data.version GIT_SHA.txt -x '**/.git/**'
+          zip -r pkd-data.zip schematics room-meta doors pkd-data.version GIT_SHA.txt -x '**/.git/**'
 
       - name: Compute SHA256
         run: |
